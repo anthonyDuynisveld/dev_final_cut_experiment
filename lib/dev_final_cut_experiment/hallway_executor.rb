@@ -28,7 +28,7 @@ module DevFinalCutExperiment
 
     def build_hallway
       hallway = parser.parse_start(Hallway)
-      hallway.commands.concat(parser.parse_commands(Command, hallway:))
+      hallway.commands.concat(parser.parse_rows(Command, hallway:))
       hallway
     end
   end

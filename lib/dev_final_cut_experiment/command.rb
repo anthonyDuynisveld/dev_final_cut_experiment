@@ -6,6 +6,7 @@ module DevFinalCutExperiment
     include ActiveModel::Attributes
 
     TABLE = Hallway::TABLE
+    DROP_LINES = Hallway::DROP_LINES
     PATTERN = /\A(?<action>turn on|turn off|toggle) (?<from>\d+) through (?<to>\d+)\z/
     ACTIONS = %w[turn_on turn_off toggle].freeze
 

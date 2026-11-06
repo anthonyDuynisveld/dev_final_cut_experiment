@@ -6,6 +6,7 @@ module DevFinalCutExperiment
     include ActiveModel::Attributes
 
     TABLE = File.expand_path('../../data/scene-1-input.txt', __dir__)
+    DROP_LINES = 1
     PATTERN = /\Ahallway (?<size>\d+)\z/
 
     attribute :size, :integer

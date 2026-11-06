@@ -8,8 +8,8 @@ module DevFinalCutExperiment
       build(model, rows(model).first, 1, **associations)
     end
 
-    def parse_commands(model, **associations)
-      rows(model).drop(1).each.with_index(2).map do |line, line_number|
+    def parse_rows(model, **associations)
+      rows(model).drop(model::DROP_LINES).each.with_index(model::DROP_LINES + 1).map do |line, line_number|
         parse_command(model, line, line_number, **associations)
       end
     end
