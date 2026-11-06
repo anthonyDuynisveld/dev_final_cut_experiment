@@ -5,12 +5,20 @@ module DevFinalCutExperiment
     include ActiveModel::Model
     include ActiveModel::Attributes
 
+    TABLE = File.expand_path('../../data/scene-1-input.txt', __dir__)
+    PATTERN = /\Ahallway (?<size>\d+)\z/
+
     attribute :size, :integer
 
     validates :size, numericality: { only_integer: true, greater_than: 0 }
 
-    def lights
-      @lights ||= Array.new(size, false)
+    attr_reader :lights, :commands
+
+    def initialize(...)
+      super
+      validate!
+      @lights = Array.new(size, false)
+      @commands = []
     end
 
     def turn_on(from, to)
