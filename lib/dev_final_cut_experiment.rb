@@ -15,6 +15,18 @@ require_relative 'dev_final_cut_experiment/guess_executor'
 require_relative 'dev_final_cut_experiment/lock'
 require_relative 'dev_final_cut_experiment/password'
 require_relative 'dev_final_cut_experiment/guess'
+require_relative 'dev_final_cut_experiment/order_book'
+require_relative 'dev_final_cut_experiment/doll'
+require_relative 'dev_final_cut_experiment/doll/part'
+require_relative 'dev_final_cut_experiment/doll/pattern'
+require_relative 'dev_final_cut_experiment/doll/head'
+require_relative 'dev_final_cut_experiment/doll/eyes'
+require_relative 'dev_final_cut_experiment/doll/hair'
+require_relative 'dev_final_cut_experiment/doll/limbs'
+require_relative 'dev_final_cut_experiment/doll/outfit'
+require_relative 'dev_final_cut_experiment/doll/voice_box'
+require_relative 'dev_final_cut_experiment/doll/haunting'
+require_relative 'dev_final_cut_experiment/order_book_executor'
 
 module DevFinalCutExperiment
   def self.run
@@ -25,11 +37,12 @@ module DevFinalCutExperiment
     LibraryExecutor.from_file.run
   end
 
-  # Solves the lock against the REAL endpoint (spends real guesses, about 14
-  # on average, 17 at most). Needs TEAMCRAFT_TOKEN set. Returns the Lock so its
-  # solution, guesses and password can be inspected, even if solving stopped
-  # part way.
-  def self.solve_lock(scene: 3, part: 1)
+  # Total minutes to build every doll in the order book.
+  def self.order_book_minutes
+    OrderBookExecutor.from_file.run
+  end
+
+def self.solve_lock(scene: 3, part: 1)
     lock = Lock.new(scene:, part:)
     lock.solve
     lock
